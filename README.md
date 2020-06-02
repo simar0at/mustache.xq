@@ -20,8 +20,11 @@ Mustache.xq is designed to help you when:
 2. Want to render json as a string
 3. Internationalization
 
-Mustache.xq was designed using [MarkLogic][4] Server but can be 
-used in any XQuery processor
+This mustache implementation is ported to BaseX.
+
+Mustache.xq was designed using [MarkLogic][4] Server.
+It uses some very unique Marklogic only functions and some that are available in other processors
+but with different names for each processor.
 
 ## Usage
 
