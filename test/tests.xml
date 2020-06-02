@@ -23,9 +23,10 @@
       </multi>
     </parseTree>
   </test>
-  <test name="Variables with embedded XQuery" section="etag">
+  <!-- 
+test name="Variables with embedded XQuery" section="etag">
     <template>{'x=4+5*2={{x}}'}</template>
-    <hash>{'{ "x": ( xs:integer(4) + 5 ) * 2 }'}</hash>
+    <hash>{'{ "x": "( xs:integer(4) + 5 ) * 2" }'}</hash>
     <output><div>x=4+5*2=18</div></output>
     <parseTree>
       <multi> 
@@ -33,9 +34,9 @@
         <etag name="x"/> 
       </multi>
     </parseTree>
-  </test>
+  </test -->
   <test name="Escaped Variables with {'{{{var}}}'}" section="utag">
-    <template>{'* {{name}}
+    <template xml:space="preserve">{'* {{name}}
     * {{age}}
     * {{company}}
     * {{{company}}}'}</template>
@@ -43,7 +44,7 @@
       "name": "Chris",
       "company": "<b>GitHub</b>"
     }'}</hash>
-    <output>
+    <output xml:space="preserve">
       <div>
         * Chris 
         *
@@ -75,15 +76,15 @@
     </parseTree>
   </test>
   <test name="Escaped Variables with {{&amp;var}}" section="utag">
-    <template>{'* {{name}}
+    <template xml:space="preserve">{'* {{name}}
     * {{age}}
     * {{company}}
     * {{&amp;company}}'}</template>
     <hash>{'{
       "name": "Chris",
-      "company": "<b>GitHub</b>"
+      "company": "&lt;b>GitHub&lt;/b>"
     }'}</hash>
-    <output>
+    <output xml:space="preserve">
       <div>
         * Chris 
         *
@@ -206,7 +207,7 @@
   </test>
   <test name="Array of Strings" section="section">
     <template>{'{{#array_of_strings}} {{.}}! {{/array_of_strings}}'}</template>
-    <hash>{'{array_of_strings: ["hello", "world"]}'}</hash>
+    <hash>{'{"array_of_strings": ["hello", "world"]}'}</hash>
     <output><div>hello! world!</div></output>
     <parseTree>
       <multi>
@@ -332,7 +333,7 @@
     <hash>{'{
       "name": "Chris",
       "value": 10000,
-      "taxed_value": 10000 - (10000 * 0.4),
+      "taxed_value": 6000,
       "in_ca": true }'}</hash>
     <output><div>Hello Chris! You have just won $10000! Well, $6000, after taxes.</div></output>
     <parseTree>
@@ -473,10 +474,10 @@
         {{b}}
       {{/a}}
     {{/foo}}'}</template>
-    <hash>{'{ foo: [
-      {a: {b: 1}},
-      {a: {b: 2}},
-      {a: {b: 3}}
+    <hash>{'{ "foo": [
+      {"a": {"b": 1}},
+      {"a": {"b": 2}},
+      {"a": {"b": 3}}
     ] }'}</hash>
     <output><div>1 2 3</div></output>
     <parseTree>
@@ -494,8 +495,8 @@
   <test name="Welcome Joe" section="complex">
     <template>{'{{greeting}}, {{name}}!'}</template>
     <hash>{'{
-      name: "Joe",
-      greeting: "Welcome" }'}</hash>
+      "name": "Joe",
+      "greeting": "Welcome" }'}</hash>
     <output><div>Welcome, Joe!</div></output>
     <parseTree>
       <multi>
@@ -664,9 +665,9 @@
     {{/terms}}
     '}</template>
     <hash>{'{
-      terms: [
-        {name: "t1", index: 0},
-        {name: "t2", index: 1},
+      "terms": [
+        {"name": "t1", "index": 0},
+        {"name": "t2", "index": 1}
       ]
     }'}</hash>
     <output><div>t1
@@ -692,7 +693,7 @@
   </test>
   <test name="Apos" section="complex">
     <template>{'{{apos}}{{control}}'}</template>
-    <hash>{'{"apos": "&#39;", "control":"X")}'}</hash>
+    <hash>{'{"apos": "&#39;", "control":"X"}'}</hash>
     <output><div>&#39;X</div></output>
     <parseTree>
       <multi> 
@@ -709,11 +710,11 @@
       {{index}}
     {{/terms}}'}</template>
     <hash>{'{
-      name: "name",
-      description: "desc",
-      terms: [
-        {name: "t1", index: 0},
-        {name: "t2", index: 1} ] }'}</hash>
+      "name": "name",
+      "description": "desc",
+      "terms": [
+        {"name": "t1", "index": 0},
+        {"name": "t2", "index": 1} ] }'}</hash>
     <output><div>name
         desc
           t1
