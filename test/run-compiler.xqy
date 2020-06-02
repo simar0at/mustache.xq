@@ -1,4 +1,4 @@
-xquery version "1.0-ml" ;
+xquery version "1.0" ;
 
 import module namespace mustache = "mustache.xq"
   at "../mustache.xq" ;
