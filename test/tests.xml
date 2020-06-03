@@ -23,8 +23,7 @@
       </multi>
     </parseTree>
   </test>
-  <!-- 
-test name="Variables with embedded XQuery" section="etag">
+  <test name="Variables with embedded XQuery" section="etag">
     <template>{'x=4+5*2={{x}}'}</template>
     <hash>{'{ "x": "( xs:integer(4) + 5 ) * 2" }'}</hash>
     <output><div>x=4+5*2=18</div></output>
@@ -34,7 +33,7 @@ test name="Variables with embedded XQuery" section="etag">
         <etag name="x"/> 
       </multi>
     </parseTree>
-  </test -->
+  </test>
   <test name="Escaped Variables with {'{{{var}}}'}" section="utag">
     <template xml:space="preserve">{'* {{name}}
     * {{age}}
